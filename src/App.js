@@ -1,26 +1,56 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import { Route, Switch, withRouter } from 'react-router-dom'
+import { SiteHeader } from './components/persistent/SiteHeader'
+import { SiteNav } from './components/persistent/SiteNav'
+import { About } from './components/persistent/About'
+import { AuthForm } from './components/loggedout/AuthForm'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  
+  renderAuthForm = (routerProps) => {
+    let {pathname} = routerProps.location
+    if(pathname === 'signin'){
+      return <AuthForm formName='Sign In'/>
+    } else if(pathname === 'signup') {
+      return <AuthForm formName='Sign Up'/>
+    }
+  }
+
+  renderHome = () => {
+
+  }
+
+  renderProfile = () => {
+
+  }
+
+  renderAddMovie = () => {
+
+  }
+
+  render () {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <SiteHeader/>
+        </header>
+        <main>
+          <Switch>
+            <Route path='/' exact render={this.renderHome}/>
+            <Route path='/about' exact component={About}/>
+            <Route path='/signin' exact component={this.renderAuthForm}/>
+            <Route path='/signup' exact component={this.renderAuthForm}/>
+            <Route path='/profile' exact component={this.renderProfile}/>
+            <Route path='/addmovie' exact component={this.renderAddMovie}/>
+          </Switch>
+        </main>
+        <nav>
+          <SiteNav/>
+        </nav>
+      </div>
+    );
+  }
 }
 
-export default App;
+export default withRouter(App);
