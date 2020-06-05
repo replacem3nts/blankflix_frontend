@@ -10,9 +10,9 @@ class App extends Component {
   
   renderAuthForm = (routerProps) => {
     let {pathname} = routerProps.location
-    if(pathname === 'signin'){
+    if(pathname === '/signin'){
       return <AuthForm formName='Sign In'/>
-    } else if(pathname === 'signup') {
+    } else if(pathname === '/signup') {
       return <AuthForm formName='Sign Up'/>
     }
   }
@@ -35,7 +35,7 @@ class App extends Component {
         <header className="App-header">
           <SiteHeader/>
         </header>
-        <main>
+        <main className="App-main">
           <Switch>
             <Route path='/' exact render={this.renderHome}/>
             <Route path='/about' exact component={About}/>
