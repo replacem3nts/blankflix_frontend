@@ -12,8 +12,9 @@ let store = configureStore({
   preloadedState: {
     id: 1,
     username: 'coolhandluke',
-    token: '',
-    sitename: 'Surfer'
+    appname: 'Surfer',
+    movies: [],
+    token: ''
   }
 })
 

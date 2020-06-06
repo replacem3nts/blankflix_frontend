@@ -1,14 +1,25 @@
 import React from 'react'
 import { useState } from 'react'
+import { fetchCreateUser, fetchLogin } from '../../services/Utils'
+import { useDispatch } from 'react-redux'
+import { addUser } from '../../actions/users'
 
-export const AuthForm = ({formName, handleSubmit}) => {
+export const AuthForm = (props) => {
     let [username, setUsername] = useState('')
     let [password, setPassword] = useState('')
+    let dispatch = useDispatch()
 
     let handleFormSubmit = (e) => {
         e.preventDefault()
         let credentials = {username, password}
-        console.log(credentials)
+        fetchLogin(credentials)
+            .then(response => handleResponse(response))
+    }
+
+    let handleResponse = resp => {
+        localStorage.token = resp.token
+        let userToSet = {...resp.user, token: resp.token}
+        dispatch(addUser(userToSet))
     }
 
     let handleChange = ({target}) => {
@@ -19,8 +30,9 @@ export const AuthForm = ({formName, handleSubmit}) => {
     return (
         <article>
             <section>
+                {console.log()}
                 <form onSubmit={handleFormSubmit}>
-                    <h3>{formName}</h3>
+                    <h3>{props.formName}</h3>
                     <label htmlFor={username} hidden={true}>Username: </label>
                     <input type='text' autoComplete='off' name='username' value={username} onChange={handleChange}></input><br/>
                     <label htmlFor={password} hidden={true}>Password: </label>
