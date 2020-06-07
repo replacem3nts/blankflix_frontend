@@ -1,9 +1,8 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
-export const SiteNav = () => {
+export const SiteNav = (props) => {
     return (
-        <div>
-            
-        </div>
+        <span className='footer-navlink'><NavLink to={`/${props.path}`}>{props.pathname}</NavLink></span>
     )
 }

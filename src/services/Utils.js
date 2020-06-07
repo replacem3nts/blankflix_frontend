@@ -6,9 +6,9 @@ export const fetchCreateUser = (user) => {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(user)})
-            .then(r => r.json())
-}
-
+        .then(r => r.json())
+    }
+    
 export const fetchLogin = (user) => {
     return fetch(BACKEND_USERS+'/login', {
         method: 'POST',
@@ -17,9 +17,21 @@ export const fetchLogin = (user) => {
             .then(r => r.json())
 }
 
-export const persistLogin = (token) => {
+export const fetchPersistLogin = (token) => {
     return fetch(BACKEND_USERS+'/persist_login', {
         headers: {'Authorization': `Bearer ${token}`}
+    })
+        .then(r => r.json())
+}
+
+export const fetchUpdateUser = (user, token) => {
+    return fetch(BACKEND_USERS, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(user)
     })
         .then(r => r.json())
 }
