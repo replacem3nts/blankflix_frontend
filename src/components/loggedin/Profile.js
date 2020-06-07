@@ -53,7 +53,7 @@ export const Profile = () => {
                     <form onSubmit={handleFormSubmit}>
                         <h2>Username: </h2>
                         <label htmlFor={username} hidden={true}>Username: </label>
-                        <input type='text' autoComplete='off' name='username' value={username} onChange={handleChange}></input><br/><br/>
+                        <input type='text' autoComplete='off' name='username' value={username} onChange={handleChange}></input><br/>
                         <h2>App Name: </h2>
                         <label htmlFor={appname} hidden={true}>Name of Your App: </label>
                         <input type='text' autoComplete='off' name='appname' value={appname} onChange={handleChange}></input><br/><br/>

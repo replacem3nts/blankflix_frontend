@@ -10,7 +10,8 @@ export const NavContainer = () => {
         loggedIn: [
             {path: '', pathname: 'Home'},
             {path: 'profile', pathname: 'Profile'},
-            {path: 'addmovie', pathname: 'New'}
+            {path: 'addmovie', pathname: 'New'},
+            {path: 'about', pathname: 'About'}
         ]
     }
 
