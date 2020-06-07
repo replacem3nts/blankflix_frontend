@@ -1,4 +1,5 @@
 const BACKEND_USERS = 'http://127.0.0.1:3001/api/v1/users'
+const BACKEND_MOVIES = 'http://127.0.0.1:3001/api/v1/movies'
 const YOUTUBE_SEARCH_BY_ID = 'https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics%2Cstatus&id='
 
 // Backend user fetches
@@ -37,7 +38,22 @@ export const fetchUpdateUser = (user, token) => {
         .then(r => r.json())
 }
 
-// YouTube Search fetches below here:
+// Backend movie fetches
+
+export const fetchCreateMovie = (movie, token) => {
+    return fetch(BACKEND_MOVIES, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(movie)
+    })
+        .then(r => r.json())
+
+}
+
+// YouTube fetches
 
 export const fetchMovieDetails = (movieId) => {
     return fetch(YOUTUBE_SEARCH_BY_ID+`${movieId}&key=`+process.env.REACT_APP_YOUTUBE_API_KEY)

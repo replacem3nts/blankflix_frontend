@@ -10,3 +10,10 @@ export const logUserOut = () => {
         type: 'LOG_USER_OUT'
     }
 }
+
+export const addMovie = movie => {
+    return {
+        type: 'ADD_MOVIE',
+        movie
+    }
+}

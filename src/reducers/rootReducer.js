@@ -16,6 +16,10 @@ export default function mainReducer(state = initialState, action) {
         case 'LOG_USER_OUT':
             localStorage.clear()
             return {...state, ...initialState}
+        case 'ADD_MOVIE':
+            let newMovieArray = [...state.movies, action.response.movie]
+            console.log(newMovieArray)
+            return 
         default:
             return state
     }
