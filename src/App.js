@@ -20,8 +20,10 @@ class App extends Component {
         .then(user => {
           if(!user.message){
               this.props.dispatch(addUser(user))
-              this.props.history.push('/')
-          }
+            } else {
+              localStorage.clear()
+            }
+            this.props.history.push('/')
         })
     }
   }

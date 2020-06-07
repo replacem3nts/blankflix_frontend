@@ -73,7 +73,7 @@ export const AuthForm = (props) => {
                     ?
                     <>
                         <label htmlFor={appname} hidden={true}>Name of Your App: </label>
-                        <input type='text' autoComplete='off' name='appname' value={appname} onChange={handleChange} placeholder='Enter a name for your app'></input><br/><br/>
+                        <input type='text' autoComplete='off' name='appname' value={appname} onChange={handleChange} placeholder='Name your app!'></input><br/><br/>
                     </>
                     :
                     null

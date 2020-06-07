@@ -1,17 +1,13 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { logUserOut } from '../actions/users'
-import { useHistory } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 export const LogOutButton = () => {
     let dispatch = useDispatch()
-    let history = useHistory()
 
     let handleLogout = () => {
         dispatch(logUserOut())
-        history.push('/')
     }
-    return (
-        <div id="auth-form-button" onClick={handleLogout}>LOGOUT</div>
-    )
+    return <div id="auth-form-button"><NavLink to='/' onClick={handleLogout}>LOGOUT</NavLink></div>
 }
