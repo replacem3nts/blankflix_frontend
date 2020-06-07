@@ -1,12 +1,16 @@
 import React from 'react'
-import { fetchMovieDetails } from '../../services/Utils'
+import { fetchMovieDetails, fetchCreateMovie } from '../../services/Utils'
 import { useState } from 'react'
+import { addMovie } from '../../actions/users'
+import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 
 
 export const AddMovie = () => {
     let [inputmovieurl, setInputmovieurl] = useState('')
     let [movie, setMovie] = useState([])
     let [errormsg, setErrormsg] = useState('')
+    let dispatch = useDispatch()
 
     let handleSubmit = (e) => {
         e.preventDefault()
@@ -42,8 +46,16 @@ export const AddMovie = () => {
         }
     }
     
-    let handleAddMovie = (e) => {
+    let handleAddMovieClick = (e) => {
         e.preventDefault()
+        fetchCreateMovie(movie, localStorage.token)
+            .then(resp => {
+                if (resp.message) {
+                    setErrormsg(resp.message)
+                } else {
+                    dispatch(addMovie(resp))
+                }
+            })
     }
     
     return (
@@ -64,7 +76,7 @@ export const AddMovie = () => {
                     <h3>{movie.title}</h3>
                     <p>View Count: {movie.viewCount}</p>
                     <p>Duration: {movie.duration}</p>
-                    <button onClick={handleAddMovie}>Add to Movies</button>
+                    <button onClick={handleAddMovieClick}>Add to Movies</button>
                 </section>
                 :
                 null
