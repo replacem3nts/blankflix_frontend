@@ -9,13 +9,6 @@ import rootReducer from './reducers/rootReducer'
 
 let store = configureStore({
   reducer: rootReducer,
-  preloadedState: {
-    id: 1,
-    username: 'coolhandluke',
-    appname: 'Surfer',
-    movies: [],
-    token: ''
-  }
 })
 
 ReactDOM.render(

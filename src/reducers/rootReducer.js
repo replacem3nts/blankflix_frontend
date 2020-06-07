@@ -1,9 +1,21 @@
-export default function mainReducer(state = [], action) {
+const initialState = {
+    id: '',
+    username: '',
+    appname: '',
+    movies: [],
+    token: ''
+  }
+
+export default function mainReducer(state = initialState, action) {
     switch(action.type) {
         case 'ADD_USER':
-            console.log(action.user)
-            console.log(state)
-            return [...state, action.user]
+            let {user, token} = action.user
+            let newState = {...user, token}
+            localStorage.token = token
+            return {...state, ...newState}
+        case 'LOG_USER_OUT':
+            localStorage.clear()
+            return {...state, ...initialState}
         default:
             return state
     }

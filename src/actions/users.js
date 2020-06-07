@@ -4,3 +4,9 @@ export const addUser = user => {
         user
     }
 }
+
+export const logUserOut = () => {
+    return {
+        type: 'LOG_USER_OUT'
+    }
+}

@@ -1,19 +1,20 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { AuthButton } from '../AuthButton'
+import { LogOutButton } from '../LogOutButton'
 
 export const SiteHeader = () => {
-    let sitename = useSelector(state => state.sitename)
+    let appname = useSelector(state => state.appname)
     let token = useSelector(state => state.token)
     return (
-        <>
-            <h1>{!!sitename ? `${sitename}FLIX` : '[blank]FLIX'}</h1>
+        <span id='inner-header'>
+            <h1>{!!appname ? `${appname}FLIX` : '[blank]FLIX'}</h1>
             {!!token 
                 ?
-                null
+                <LogOutButton/>
                 :
                 <AuthButton formpath={'signin'} formname={'SIGN IN'}/>
             }
-        </>
+        </span>
     )
 }
