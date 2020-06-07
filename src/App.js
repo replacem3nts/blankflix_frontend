@@ -11,6 +11,7 @@ import { fetchPersistLogin } from './services/Utils'
 import { addUser } from './actions/users'
 import { connect } from 'react-redux'
 import { NavContainer } from './containers/NavContainer';
+import { AddMovie } from './components/loggedin/AddMovie';
 
 class App extends Component {
 
@@ -52,7 +53,9 @@ class App extends Component {
   }
 
   renderAddMovie = () => {
-
+    if(localStorage.token){
+      return <AddMovie/>
+    }
   }
 
   render () {
@@ -65,10 +68,10 @@ class App extends Component {
           <Switch>
             <Route path='/' exact render={this.renderHome}/>
             <Route path='/about' exact component={About}/>
-            <Route path='/signin' exact component={this.renderAuthForm}/>
-            <Route path='/signup' exact component={this.renderAuthForm}/>
+            <Route path='/signin' exact render={this.renderAuthForm}/>
+            <Route path='/signup' exact render={this.renderAuthForm}/>
             <Route path='/profile' exact render={this.renderProfile}/>
-            <Route path='/addmovie' exact component={this.renderAddMovie}/>
+            <Route path='/addmovie' exact render={this.renderAddMovie}/>
           </Switch>
         </main>
         <nav className="App-footer">
