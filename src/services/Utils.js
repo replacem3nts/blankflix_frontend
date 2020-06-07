@@ -1,4 +1,5 @@
 const BACKEND_USERS = 'http://127.0.0.1:3001/api/v1/users'
+const YOUTUBE_SEARCH_BY_ID = 'https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics%2Cstatus&id='
 
 // Backend user fetches
 export const fetchCreateUser = (user) => {
@@ -36,3 +37,9 @@ export const fetchUpdateUser = (user, token) => {
         .then(r => r.json())
 }
 
+// YouTube Search fetches below here:
+
+export const fetchMovieDetails = (movieId) => {
+    return fetch(YOUTUBE_SEARCH_BY_ID+`${movieId}&key=`+process.env.REACT_APP_YOUTUBE_API_KEY)
+        .then(r => r.json())
+}

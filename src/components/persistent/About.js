@@ -7,14 +7,14 @@ export const About = () => {
             <section>
                 <h2>About</h2>
                 <ul id='about-toc'>
-                    <li><Link to='/about#why'>Why [blank]FLIX was built</Link></li>
-                    <li><Link to='/about#how-to'>How to Use [blank]FLIX</Link></li>
-                    <li><Link to='/about#who'>Who Built [blank]FLIX</Link></li>
+                    <li><Link to='/about#why'>-Why [blank]FLIX was built</Link></li>
+                    <li><Link to='/about#how-to'>-How to Use [blank]FLIX</Link></li>
+                    <li><Link to='/about#who'>-Who Built [blank]FLIX</Link></li>
                 </ul>
             </section>
             <section id='why'>
                 <h2>Why</h2>
-                <p>[blank]FLIX was created because there are a lot of free feature-length movies available on both YouTube and Vimeo, but there's no centralized streaming service to watch these videos on. Further, for whatever reason, the inbuilt search functions on these platforms are not very good at returning the movies you actually want to watch.</p>
+                <p>[blank]FLIX was created because there are a lot of free feature-length movies available on both YouTube and Vimeo, but there's no centralized streaming service to watch them on. Further, for whatever reason, the search functions on these platforms don't make it easy to find the movies you actually want to watch.</p>
                 <p>With [blank]FLIX you can easily search for the films you're interested in, save them to your account and watch them at you leisure. Happy viewing!</p>
             </section>
             <section id='how-to'>
@@ -22,6 +22,8 @@ export const About = () => {
                 <p>To get started click the sign up button and create an account. Once you've logged in, you can click the 'NEW' button and add vidoes to your personal video streaming service. When you </p>
             </section>
             <section id='who'>
+                <h2>Who</h2>
+                <p>[blank]FLIX was built with lots of love and care by Donny Landis. </p><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
             </section>
             
         </article>

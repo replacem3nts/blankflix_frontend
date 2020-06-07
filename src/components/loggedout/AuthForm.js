@@ -48,32 +48,20 @@ export const AuthForm = (props) => {
         })
     }
 
-    let handleChange = ({target}) => {
-        let {name, value} = target
-        switch(name){
-            case 'username':
-                return setUsername(value)
-            case 'password':
-                return setPassword(value)
-            default:
-                return setAppname(value)
-        }
-    }
-
     return (
         <article>
             <section>
                 <form onSubmit={handleFormSubmit}>
                     <h2>{props.formName}</h2>
                     <label htmlFor={username} hidden={true}>Username: </label>
-                    <input type='text' autoComplete='off' name='username' value={username} onChange={handleChange} placeholder='Enter username'></input><br/><br/>
+                    <input type='text' autoComplete='off' name='username' value={username} onChange={e => setUsername(e.target.value)} placeholder='Enter username'></input><br/><br/>
                     <label htmlFor={password} hidden={true}>Password: </label>
-                    <input type='password' autoComplete='off' name='password' value={password} onChange={handleChange} placeholder='Enter password'></input><br/><br/>
+                    <input type='password' autoComplete='off' name='password' value={password} onChange={e => setPassword(e.target.value)} placeholder='Enter password'></input><br/><br/>
                     {props.formName === 'Sign Up' 
                     ?
                     <>
-                        <label htmlFor={appname} hidden={true}>Name of Your App: </label>
-                        <input type='text' autoComplete='off' name='appname' value={appname} onChange={handleChange} placeholder='Name your app!'></input><br/><br/>
+                    <label htmlFor={appname} hidden={true}>Name of Your App: </label>
+                    <input type='text' autoComplete='off' name='appname' value={appname} onChange={e => setAppname(e.target.value)} placeholder='Name your app!'></input><br/><br/>
                     </>
                     :
                     null
