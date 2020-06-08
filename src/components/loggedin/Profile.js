@@ -1,9 +1,9 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { addUser } from '../../actions/users'
-import { fetchUpdateUser } from '../../services/Utils'
+import { addUser, logUserOut } from '../../actions/users'
+import { fetchUpdateUser, fetchDestroyUser } from '../../services/Utils'
+import { useHistory } from 'react-router-dom'
 
 export const Profile = () => {
     let currentState = useSelector(state => state)
@@ -12,6 +12,7 @@ export const Profile = () => {
     let [errorMsg, setErrormsg] = useState('')
     let [edit, setEdit] = useState(false)
     let dispatch = useDispatch()
+    let history = useHistory()
 
     let handleFormSubmit = (e) => {
         e.preventDefault()
@@ -36,30 +37,48 @@ export const Profile = () => {
         setEdit(edit => !edit)
     }
 
+    let handleDelete = (e) => {
+        e.preventDefault()
+        fetchDestroyUser(localStorage.token)
+            .then(resp => {
+                if(resp.message) {
+                    setErrormsg(resp.message)
+                } else {
+                    dispatch(logUserOut())
+                    history.push('/')
+                }
+            })
+        
+    }
+
     return (
         <article>
+            <h1>Profile</h1>
             {edit ? 
                 <section>
                     <form onSubmit={handleFormSubmit}>
-                        <h2>Username: </h2>
+                        <h3>Username: </h3>
                         <label htmlFor={username} hidden={true}>Username: </label>
                         <input type='text' autoComplete='off' name='username' value={username} onChange={e => setUsername(e.target.vlue)}></input><br/>
-                        <h2>App Name: </h2>
+                        <h3>App Name: </h3>
                         <label htmlFor={appname} hidden={true}>Name of Your App: </label>
                         <input type='text' autoComplete='off' name='appname' value={appname} onChange={e => setAppname(e.target.value)}></input><br/><br/>
                         <input type='submit' value='SAVE'/>
-                    </form>
-                    {errorMsg ? <p>{errorMsg}</p> : null}
+                    </form><br/><br/>
                 </section>
                 :
                 <section>
-                    <h2>Username: </h2>
+                    <h3>Username: </h3>
                     {username}
-                    <h2>App Name: </h2>
-                    {appname}
+                    <h3>App Name: </h3>
+                    {appname}<br/><br/>
                 </section>
             }
-            <br/><br/><button onClick={handleEdit}>{edit ? 'Cancel' : 'Edit'}</button>
+            <section>
+                <button onClick={handleEdit}>{edit ? 'Cancel' : 'Edit'}</button><br/><br/>
+                <button onClick={handleDelete}>Delete Account</button><br/><br/>
+                {errorMsg ? <p>{errorMsg}</p> : null}
+            </section>
         </article>
     )
 }
