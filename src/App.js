@@ -7,11 +7,12 @@ import { AuthForm } from './components/loggedout/AuthForm'
 import { Welcome } from './components/loggedout/Welcome'
 import { Home } from './components/loggedin/Home'
 import { Profile } from './components/loggedin/Profile';
+import { AddMovie } from './components/loggedin/AddMovie';
+import { DisplayMovie } from './components/loggedin/DisplayMovie';
 import { fetchPersistLogin } from './services/Utils'
 import { addUser } from './actions/users'
 import { connect } from 'react-redux'
 import { NavContainer } from './containers/NavContainer';
-import { AddMovie } from './components/loggedin/AddMovie';
 
 class App extends Component {
 
@@ -58,6 +59,14 @@ class App extends Component {
     }
   }
 
+  renderMovie = (routerProps) => {
+    let {slug} = routerProps.match.params
+    let foundMovie = this.props.movies.find(movie => movie.id === parseInt(slug, 10))
+    if(foundMovie && localStorage.token){
+      return <DisplayMovie {...foundMovie}/>
+    }
+  }
+
   render () {
     return (
       <div className="App">
@@ -72,6 +81,7 @@ class App extends Component {
             <Route path='/signup' exact render={this.renderAuthForm}/>
             <Route path='/profile' exact render={this.renderProfile}/>
             <Route path='/addmovie' exact render={this.renderAddMovie}/>
+            <Route path='/movie/:slug' render={this.renderMovie}/>
           </Switch>
         </main>
         <nav className="App-footer">
@@ -82,4 +92,4 @@ class App extends Component {
   }
 }
 
-export default connect()(withRouter(App));
+export default connect(state => state)(withRouter(App));

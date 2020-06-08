@@ -11,6 +11,7 @@ export const AddMovie = () => {
     let [movie, setMovie] = useState([])
     let [errormsg, setErrormsg] = useState('')
     let dispatch = useDispatch()
+    let history = useHistory()
 
     let handleSubmit = (e) => {
         e.preventDefault()
@@ -53,7 +54,9 @@ export const AddMovie = () => {
                 if (resp.message) {
                     setErrormsg(resp.message)
                 } else {
-                    dispatch(addMovie(resp))
+                    dispatch(addMovie(resp.movie))
+                    let {id} = resp.movie
+                    history.push(`/movie/${id}`)
                 }
             })
     }

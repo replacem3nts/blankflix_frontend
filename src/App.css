@@ -96,3 +96,22 @@
   font-weight: 600;
 
 }
+
+.home-screen {
+  height: 100%;
+  overflow: scroll;
+}
+
+.home-thumb-display {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.watch-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}

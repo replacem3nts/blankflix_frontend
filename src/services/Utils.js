@@ -50,7 +50,17 @@ export const fetchCreateMovie = (movie, token) => {
         body: JSON.stringify(movie)
     })
         .then(r => r.json())
+}
 
+export const fetchDestroyMovie = (movieID, token) => {
+    return fetch(BACKEND_MOVIES+`/${movieID}`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Accept': 'application/json'
+        }
+    })
+        .then(r => r.json())
 }
 
 // YouTube fetches
