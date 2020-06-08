@@ -26,7 +26,9 @@ class App extends Component {
               localStorage.clear()
             }
             this.props.history.push('/')
-        })
+          })
+      } else {
+        this.props.history.push('/')
     }
   }
   

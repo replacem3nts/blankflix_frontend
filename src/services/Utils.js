@@ -38,6 +38,14 @@ export const fetchUpdateUser = (user, token) => {
         .then(r => r.json())
 }
 
+export const fetchDestroyUser = (token) => {
+    return fetch(BACKEND_USERS, {
+        method: 'DELETE',
+        headers: {'Authorization': `Bearer ${token}`}
+    })
+        .then(r => r.json())
+}
+
 // Backend movie fetches
 
 export const fetchCreateMovie = (movie, token) => {
