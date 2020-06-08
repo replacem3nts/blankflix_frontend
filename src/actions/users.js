@@ -17,3 +17,10 @@ export const addMovie = movie => {
         movie
     }
 }
+
+export const removeMovie = movieID => {
+    return {
+        type: 'REMOVE_MOVIE',
+        movieID
+    }
+}
