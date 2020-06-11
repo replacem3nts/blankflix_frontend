@@ -1,10 +1,11 @@
 .App-main {
   background: #12294B;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
   color: #DEDEDE;
   height: 75vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
 }
 
 #auth-form-button {
@@ -97,21 +98,43 @@
 
 }
 
-.home-screen {
-  height: 100%;
-  overflow: scroll;
-}
-
-.home-thumb-display {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-}
-
 .watch-container {
   width: 100%;
   height: auto;
   display: flex;
   align-content: center;
   justify-content: center;
+}
+
+.home-screen {
+  height: 100%;
+  width: 90vw;
+  align-self: center;
+  overflow: scroll;
+}
+
+.channel-container {
+  height: auto;
+  width: 90vw;
+  justify-self: center;
+  overflow-y: scroll;
+}
+
+.thumb-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.thumb-container div {
+  margin: 0% 2% 0% 2%;
+  max-width: 35vw;
+  justify-content: center;
+}
+
+.thumb-container p {
+  margin-top: 0;
+  height: 1em;
+  overflow: hidden;
 }

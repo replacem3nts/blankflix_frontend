@@ -8,9 +8,9 @@ export const DisplayThumb = ({smallthumb, title, id}) => {
         history.push(`/movie/${id}`)
     }
     return (
-        <span onClick={handleThumbClick}>
+        <div onClick={handleThumbClick}>
             <img src={smallthumb} alt={title}/>
             <p>{title}</p>
-        </span>
+        </div>
     )
 }

@@ -30,6 +30,7 @@ export const AuthForm = (props) => {
             if(user.message){
                 return setErrormsg(user.message)
             } else {
+                console.log(user)
                 dispatch(addUser(user))
                 history.push('/')
             }
