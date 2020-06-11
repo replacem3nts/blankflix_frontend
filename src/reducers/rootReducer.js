@@ -3,6 +3,7 @@ const initialState = {
     username: '',
     appname: '',
     movies: [],
+    movie_channels: [],
     token: ''
   }
 
