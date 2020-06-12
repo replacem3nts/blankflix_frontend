@@ -76,9 +76,9 @@ export const AddMovie = () => {
                 ?
                 <section>
                     <img src={movie.medthumb} alt={movie.title}/>
-                    <h3>{movie.title}</h3>
                     <p>View Count: {movie.viewCount}</p>
                     <p>Duration: {movie.duration}</p>
+                    <h3>{movie.title}</h3>
                     <button onClick={handleAddMovieClick}>Add to Movies</button>
                 </section>
                 :
