@@ -21,7 +21,7 @@ export const ManageChannels = () => {
     }
 
     return (
-        <article>
+        <article className='centered-spaced'>
             <h2>My Channels</h2>
             <section>
                 <ul>{channelArray}</ul>
