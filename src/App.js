@@ -13,6 +13,7 @@ import { fetchPersistLogin } from './services/Utils'
 import { addUser } from './actions/users'
 import { connect } from 'react-redux'
 import { NavContainer } from './containers/NavContainer';
+import { ManageChannels } from './containers/ManageChannels';
 
 class App extends Component {
 
@@ -55,6 +56,12 @@ class App extends Component {
     }
   }
 
+  renderChannels = () => {
+    if(localStorage.token){
+      return <ManageChannels/>
+    }
+  }
+
   renderAddMovie = () => {
     if(localStorage.token){
       return <AddMovie/>
@@ -82,6 +89,7 @@ class App extends Component {
             <Route path='/signin' exact render={this.renderAuthForm}/>
             <Route path='/signup' exact render={this.renderAuthForm}/>
             <Route path='/profile' exact render={this.renderProfile}/>
+            <Route path='/channels' exact render={this.renderChannels}/>
             <Route path='/addmovie' exact render={this.renderAddMovie}/>
             <Route path='/movie/:slug' render={this.renderMovie}/>
           </Switch>
