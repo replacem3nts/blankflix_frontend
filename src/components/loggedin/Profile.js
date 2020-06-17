@@ -56,7 +56,7 @@ export const Profile = () => {
     }
 
     return (
-        <article>
+        <article className='centered-spaced'>
             <h1>Profile</h1>
             {edit ? 
                 <section>
