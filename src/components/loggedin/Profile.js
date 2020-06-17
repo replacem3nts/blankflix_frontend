@@ -50,6 +50,11 @@ export const Profile = () => {
             })
     }
 
+    let handleChannelLink = (e) => {
+        e.preventDefault()
+        history.push('/channels')
+    }
+
     return (
         <article>
             <h1>Profile</h1>
@@ -76,6 +81,7 @@ export const Profile = () => {
             <section>
                 <button onClick={handleEdit}>{edit ? 'Cancel' : 'Edit'}</button><br/><br/>
                 <button onClick={handleDelete}>Delete Account</button><br/><br/>
+                <button onClick={handleChannelLink}>Manage Channels</button><br/><br/>
                 {errorMsg ? <p>{errorMsg}</p> : null}
             </section>
         </article>
