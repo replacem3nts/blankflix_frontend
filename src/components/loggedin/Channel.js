@@ -1,19 +1,25 @@
 import React from 'react'
-import { DisplayThumb } from './DisplayThumb'
 import { useSelector } from 'react-redux'
+import { DisplayThumb } from './DisplayThumb'
 
-export const Channel = ({name, chMovies}) => {
+export const Channel = ({id, name, user_movies}) => {
     let {movies} = useSelector(state => state)
-    let channelMovies = movies.filter(movie => chMovies.includes(movie.id))
+    let channelMovies = movies.filter(movie => user_movies.includes(movie.id))
+
     let movieArray = channelMovies.map(movie => {
-        return <DisplayThumb key={movie.id} {...movie}/>
-    })
-    return (
-        <section>
-            <div className='channel-container'>
-                <h4>{name}</h4>
-                <div className='thumb-container'>{movieArray}</div>
+        return (
+            <div className='display-channnel-movies'>
+                <DisplayThumb key={movie.id} {...movie}/>
             </div>
-        </section>
+        )
+    })
+
+    return (
+        <article className='channel-display'>
+            <h4 className='channel-header'>{name}</h4>
+            <section className='channel-movie-container'>
+                {movieArray}
+            </section>
+        </article>
     )
 }

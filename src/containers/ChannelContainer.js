@@ -1,17 +1,27 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Channel } from '../components/loggedin/Channel'
-import uuid from 'react-uuid'
+import { ChannelPrev } from '../components/loggedin/ChannelPrev'
+import { DisplayThumb } from '../components/loggedin/DisplayThumb'
 
 
 export const ChannelContainer = () => {
     let {movies, movie_channels} = useSelector(state => state)
     let channelArray = movie_channels.map(channel => {
-        return <Channel key={channel.id} chMovies={channel.user_movies} name={channel.name}/>
+        return <ChannelPrev key={channel.id} {...channel} />
     })
-    let allMoviesIds = movies.map(movie => movie.id)
-    channelArray.unshift(<Channel key={uuid()} chMovies={allMoviesIds} name='All Movies'/>)
-        
+    let allMovies = movies.map(movie => {
+        return <DisplayThumb key={movie.id} {...movie}/>
+    })
 
-    return <>{channelArray} </>
+    return (
+        <>
+            <section>
+                    <div className='channel-container'>
+                        <h4 className='channel-header'>All Movies</h4>
+                        <div className='thumb-container'>{allMovies}</div>
+                    </div>
+            </section>
+            {channelArray}
+        </>
+    )
 }

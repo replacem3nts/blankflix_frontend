@@ -9,6 +9,7 @@ const initialState = {
 
 export default function mainReducer(state = initialState, action) {
     let movies
+    let channelHash
     switch(action.type) {
         case 'ADD_USER':
             let {user, token} = action.user
@@ -23,8 +24,13 @@ export default function mainReducer(state = initialState, action) {
             movies = [...state.movies, movie]
             return {...state, movies}
         case 'UPDATE_CHANNELS':
-            let channelArray = {movie_channels: action.movie_channels}
-            return {...state, ...channelArray}
+            channelHash = {movie_channels: action.movie_channels}
+            return {...state, ...channelHash}
+        case 'ADD_CHANNEL':
+            let {channel} = action
+            let newChannels = [...state.movie_channels, channel]
+            channelHash = {movie_channels: newChannels}
+            return {...state, ...channelHash}
         case 'REMOVE_MOVIE':
             movies = [...state.movies.filter(movie => movie.id !== parseInt(action.movieID, 10))]
             return {...state, movies}
