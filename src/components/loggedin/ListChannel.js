@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 
+
 export const ListChannel = ({id, name}) => {
     let [channelName, setChannelName] = useState(name)
     let [edit, setEdit] = useState(false)

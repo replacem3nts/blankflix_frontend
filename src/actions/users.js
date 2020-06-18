@@ -31,3 +31,10 @@ export const updateChannels = movie_channels => {
         movie_channels
     }
 }
+
+export const addChannel = channel => {
+    return {
+        type: 'ADD_CHANNEL',
+        channel
+    }
+}

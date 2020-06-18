@@ -1,5 +1,6 @@
 const BACKEND_USERS = 'http://127.0.0.1:3001/api/v1/users'
 const BACKEND_MOVIES = 'http://127.0.0.1:3001/api/v1/movies'
+const BACKEND_CHANNELMOVIES = 'http://127.0.0.1:3001/api/v1/channelmovies'
 const YOUTUBE_SEARCH_BY_ID = 'https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics%2Cstatus&id='
 
 // Backend user fetches
@@ -67,6 +68,20 @@ export const fetchDestroyMovie = (movieID, token) => {
             'Authorization': `Bearer ${token}`,
             'Accept': 'application/json'
         }
+    })
+        .then(r => r.json())
+}
+
+// Backend channelmovie fetches
+
+export const fetchCreateChannel = (channel_name, token) => {
+    return fetch(BACKEND_CHANNELMOVIES, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(channel_name)
     })
         .then(r => r.json())
 }

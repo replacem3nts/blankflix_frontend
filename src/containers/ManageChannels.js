@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { ListChannel } from '../components/loggedin/ListChannel'
-
+import { fetchCreateChannel } from '../services/Utils'
+import { addChannel } from '../actions/users'
 
 export const ManageChannels = () => {
     let channels = useSelector(state => state.movie_channels)
     let [edit, setEdit] = useState(false)
     let [newChannel, setNewChannel] = useState('')
+    let dispatch = useDispatch()
     let channelArray = channels.map(channel => <ListChannel key={channel.id} {...channel}/>)
 
 
@@ -17,6 +19,9 @@ export const ManageChannels = () => {
 
     let handleSubmit = (e) => {
         e.preventDefault()
+        let channel = {channel_name: newChannel}
+        fetchCreateChannel(channel, localStorage.token)
+            .then(resp => {dispatch(addChannel(resp.channel))})
     }
 
     return (

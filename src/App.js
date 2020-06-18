@@ -9,6 +9,7 @@ import { Home } from './components/loggedin/Home'
 import { Profile } from './components/loggedin/Profile';
 import { AddMovie } from './components/loggedin/AddMovie';
 import { DisplayMovie } from './components/loggedin/DisplayMovie';
+import { Channel } from './components/loggedin/Channel';
 import { fetchPersistLogin } from './services/Utils'
 import { addUser } from './actions/users'
 import { connect } from 'react-redux'
@@ -56,9 +57,17 @@ class App extends Component {
     }
   }
 
-  renderChannels = () => {
+  renderMngChannels = () => {
     if(localStorage.token){
       return <ManageChannels/>
+    }
+  }
+
+  renderChannels = (routerProps) => {
+    let {slug} = routerProps.match.params
+    let foundChannel = this.props.movie_channels.find(channel => channel.id === parseInt(slug, 10))
+    if(foundChannel && localStorage.token){
+      return <Channel {...foundChannel}/>
     }
   }
 
@@ -89,7 +98,8 @@ class App extends Component {
             <Route path='/signin' exact render={this.renderAuthForm}/>
             <Route path='/signup' exact render={this.renderAuthForm}/>
             <Route path='/profile' exact render={this.renderProfile}/>
-            <Route path='/channels' exact render={this.renderChannels}/>
+            <Route path='/channels' exact render={this.renderMngChannels}/>
+            <Route path='/channel/:slug' exact render={this.renderChannels}/>
             <Route path='/addmovie' exact render={this.renderAddMovie}/>
             <Route path='/movie/:slug' render={this.renderMovie}/>
           </Switch>
