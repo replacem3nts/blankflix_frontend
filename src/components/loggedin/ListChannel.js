@@ -12,7 +12,6 @@ export const ListChannel = ({id, name}) => {
 
     let handleSubmit = (e) => {
         e.preventDefault()
-        console.log(channelName)
     }
 
     return (

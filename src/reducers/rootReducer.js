@@ -22,6 +22,9 @@ export default function mainReducer(state = initialState, action) {
             let {movie} = action
             movies = [...state.movies, movie]
             return {...state, movies}
+        case 'UPDATE_CHANNELS':
+            let channelArray = {movie_channels: action.movie_channels}
+            return {...state, ...channelArray}
         case 'REMOVE_MOVIE':
             movies = [...state.movies.filter(movie => movie.id !== parseInt(action.movieID, 10))]
             return {...state, movies}

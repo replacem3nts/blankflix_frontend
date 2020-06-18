@@ -24,3 +24,10 @@ export const removeMovie = movieID => {
         movieID
     }
 }
+
+export const updateChannels = movie_channels => {
+    return {
+        type: 'UPDATE_CHANNELS',
+        movie_channels
+    }
+}
