@@ -1,12 +1,13 @@
 import React from 'react'
 import { fetchMovieDetails, fetchCreateMovie } from '../../services/Utils'
 import { useState } from 'react'
-import { addMovie } from '../../actions/users'
-import { useDispatch } from 'react-redux'
+import { addMovie, updateChannels } from '../../actions/users'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
 
 export const AddMovie = () => {
+    let channels = useSelector(state => state.movie_channels)
     let [inputmovieurl, setInputmovieurl] = useState('')
     let [movie, setMovie] = useState([])
     let [errormsg, setErrormsg] = useState('')
@@ -36,7 +37,8 @@ export const AddMovie = () => {
                     {medthumb: snippet.thumbnails.medium.url}, 
                     {lrgthumb: snippet.thumbnails.high.url}, 
                     {viewcount: viewcount},
-                    {duration: timestring})
+                    {duration: timestring},
+                    {channel_name: ''})
                 setMovie(newMovie)
                 setInputmovieurl('')
             } else {
@@ -54,16 +56,32 @@ export const AddMovie = () => {
                 if (resp.message) {
                     setErrormsg(resp.message)
                 } else {
-                    dispatch(addMovie(resp.movie))
-                    let {id} = resp.movie
-                    history.push(`/movie/${id}`)
+                    console.log(resp)
+                    let {movie_channels} = resp.movie
+                    let newMovie = {...resp.movie}
+                    delete newMovie.movie_channels
+                    console.log(newMovie)
+                    dispatch(addMovie(newMovie))
+                    dispatch(updateChannels(movie_channels))
+                    history.push(`/movie/${newMovie.id}`)
                 }
             })
     }
+
+    let handleAddFormChange = (e) => {
+        let {name, value} = e.target
+        let newMovie = {...movie, [name]: value}
+        setMovie(newMovie)
+    }
+
+    let channelOptions = channels.map(channel => {
+        return (
+            <option key={channel.id} value={channel.name}>{channel.name}</option>
+        )
+    })
     
     return (
         <article>
-        {console.log(movie)}
             <section>
                 <form onSubmit={handleSubmit}>
                     <label htmlFor={inputmovieurl}>Enter a movie url: </label><br/>
@@ -79,6 +97,13 @@ export const AddMovie = () => {
                     <p>View Count: {movie.viewCount}</p>
                     <p>Duration: {movie.duration}</p>
                     <h3>{movie.title}</h3>
+                    <form>
+                        <input type='text' name='title' value={movie.title} onChange={handleAddFormChange}></input>
+                        <select name='channel_name' value={movie.channel_name} onChange={handleAddFormChange}>
+                            <option value=''>Select A Channel</option>
+                            {channelOptions}
+                        </select>
+                    </form>
                     <button onClick={handleAddMovieClick}>Add to Movies</button>
                 </section>
                 :

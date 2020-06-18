@@ -17,7 +17,6 @@ export const ManageChannels = () => {
 
     let handleSubmit = (e) => {
         e.preventDefault()
-        console.log(newChannel)
     }
 
     return (
