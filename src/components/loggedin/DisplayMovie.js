@@ -31,7 +31,7 @@ export const DisplayMovie = ({url, title, id}) => {
             </section>
             <section>
                 <p>{title}</p>
-                <button onClick={handleDelete}>Delete Movie</button>
+                <button className='small-button' onClick={handleDelete}>Delete Movie</button>
                 {errormsg ? <p>{errormsg}</p> : null}
             </section>
         </article>

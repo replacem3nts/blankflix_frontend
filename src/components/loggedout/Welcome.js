@@ -3,8 +3,7 @@ import { AuthButton } from '../AuthButton'
 
 export const Welcome = () => {
     return (
-        <div>
-            HELLO FROM WELCOME
+        <div className='centered-spaced'>
             <AuthButton formpath={'signup'} formname={'SIGN UP'}/>
         </div>
     )

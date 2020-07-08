@@ -21,14 +21,17 @@ export const ManageChannels = () => {
         e.preventDefault()
         let channel = {channel_name: newChannel}
         fetchCreateChannel(channel, localStorage.token)
-            .then(resp => {dispatch(addChannel(resp.channel))})
+            .then(resp => {
+                dispatch(addChannel(resp.channel))
+                setNewChannel('')
+            })
     }
 
     return (
-        <article className='centered-spaced'>
+        <article className='home-screen'>
             <h2>My Channels</h2>
             <section>
-                <ul>{channelArray}</ul>
+                <ul className='channel-list'>{channelArray}</ul>
             </section>
             <section>
                 {edit
@@ -36,10 +39,10 @@ export const ManageChannels = () => {
                     <form onSubmit={handleSubmit}>
                         <label type='hidden' value='Channel Name'/>
                         <input type='text' value={newChannel} onChange={e => setNewChannel(e.target.value)}></input>
-                        <input type='submit' value='SUBMIT'/>
+                        <input className='small-button' type='submit' value='SUBMIT'/>
                     </form>
                     :
-                    <button onClick={handleEdit}>Add New Channel</button>
+                    <button className='small-button' onClick={handleEdit}>Add New Channel</button>
                 }
             </section>
         </article>

@@ -11,7 +11,7 @@ export const ChannelPrev = ({id, name, user_movies}) => {
     })
     return (
         <section>
-            <div className='channel-movie-container'>
+            <div className='channel-container'>
                 <Link className='channel-header' to={`/channel/${id}`}>{name}</Link><br/><br/>
                 <div className='thumb-container'>{movieArray}</div>
             </div>

@@ -60,7 +60,6 @@ export const AddMovie = () => {
                     let {movie_channels} = resp.movie
                     let newMovie = {...resp.movie}
                     delete newMovie.movie_channels
-                    console.log(newMovie)
                     dispatch(addMovie(newMovie))
                     dispatch(updateChannels(movie_channels))
                     history.push(`/movie/${newMovie.id}`)
@@ -81,12 +80,12 @@ export const AddMovie = () => {
     })
     
     return (
-        <article>
+        <article className='home-screen'>
             <section>
                 <form onSubmit={handleSubmit}>
                     <label htmlFor={inputmovieurl}>Enter a movie url: </label><br/>
                     <input type='text' name='url' value={inputmovieurl} onChange={e => setInputmovieurl(e.target.value)}></input><br/>
-                    <input type='submit' value='SUBMIT'/><br/>
+                    <input className='small-button' type='submit' value='SUBMIT'/><br/>
                     {errormsg ? <p>{errormsg}</p> : null}
                 </form>
             </section>
@@ -104,7 +103,7 @@ export const AddMovie = () => {
                             {channelOptions}
                         </select>
                     </form>
-                    <button onClick={handleAddMovieClick}>Add to Movies</button>
+                    <button className='small-button' onClick={handleAddMovieClick}>Add to Movies</button>
                 </section>
                 :
                 null

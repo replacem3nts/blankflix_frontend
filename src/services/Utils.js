@@ -86,6 +86,17 @@ export const fetchCreateChannel = (channel_name, token) => {
         .then(r => r.json())
 }
 
+export const fetchRemoveMovie = (channelmovie, token) => {
+    return fetch(BACKEND_CHANNELMOVIES+`/${channelmovie.channel_id}/${channelmovie.movie_id}`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Accept': 'application/json'
+        },
+    })
+        .then(r => r.json())
+}
+
 // YouTube fetches
 
 export const fetchMovieDetails = (movieId) => {

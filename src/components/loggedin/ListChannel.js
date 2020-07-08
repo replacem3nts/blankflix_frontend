@@ -19,20 +19,24 @@ export const ListChannel = ({id, name}) => {
         <li>
             {edit 
                 ?
-                <>
+                <div className='edit-name-container'>
                     <form onSubmit={handleSubmit}>
                         <label type='hidden' value='Channel Name'/>
                         <input type='text' value={channelName} onChange={e => setChannelName(e.target.value)}></input>
-                        <input type='submit' value='SUBMIT'/>
+                        <input className='small-button' type='submit' value='SUBMIT'/>
                     </form>
-                    <button onClick={handleEdit}>CANCEL</button>
-                </>
+                    <button className='small-button' onClick={handleEdit}>CANCEL</button>
+                </div>
                 :
+                <>
                 <div>
                     {channelName}
-                    <button onClick={handleEdit}>EDIT NAME</button>
-                    <button>DELETE</button>
                 </div>
+                <div className='list-buttons'>
+                    <button className='small-button' onClick={handleEdit}>EDIT NAME</button>
+                    <button className='small-button'>DELETE</button>
+                </div>
+                </>
             }
         </li>
     )

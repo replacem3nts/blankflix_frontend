@@ -49,7 +49,7 @@ export const AuthForm = (props) => {
     }
 
     return (
-        <article>
+        <article className='home-screen'>
             <section>
                 <form onSubmit={handleFormSubmit}>
                     <h2>{props.formName}</h2>
@@ -66,7 +66,7 @@ export const AuthForm = (props) => {
                     :
                     null
                     }
-                    <input type='submit' value='SUBMIT'/>
+                    <input className='small-button' type='submit' value='SUBMIT'/>
                     {errorMsg ? <p>{errorMsg}</p> : null}
                 </form>
             </section>
