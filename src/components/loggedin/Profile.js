@@ -56,7 +56,7 @@ export const Profile = () => {
     }
 
     return (
-        <article className='centered-spaced'>
+        <article className='home-screen'>
             <h1>Profile</h1>
             {edit ? 
                 <section>
@@ -67,7 +67,7 @@ export const Profile = () => {
                         <h3>App Name: </h3>
                         <label htmlFor={appname} hidden={true}>Name of Your App: </label>
                         <input type='text' autoComplete='off' name='appname' value={appname} onChange={e => setAppname(e.target.value)}></input><br/><br/>
-                        <input type='submit' value='SAVE'/>
+                        <input className='small-button' type='submit' value='SAVE'/>
                     </form><br/><br/>
                 </section>
                 :
@@ -79,9 +79,9 @@ export const Profile = () => {
                 </section>
             }
             <section>
-                <button onClick={handleEdit}>{edit ? 'Cancel' : 'Edit'}</button><br/><br/>
-                <button onClick={handleDelete}>Delete Account</button><br/><br/>
-                <button onClick={handleChannelLink}>Manage Channels</button><br/><br/>
+                <button className='small-button' onClick={handleEdit}>{edit ? 'Cancel' : 'Edit'}</button><br/><br/>
+                <button className='small-button' onClick={handleDelete}>DELETE ACCOUNT</button><br/><br/>
+                <button className='small-button' onClick={handleChannelLink}>EDIT CHANNELS</button><br/><br/>
                 {errorMsg ? <p>{errorMsg}</p> : null}
             </section>
         </article>
